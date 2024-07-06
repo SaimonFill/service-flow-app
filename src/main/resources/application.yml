@@ -1,0 +1,32 @@
+server:
+  port: 8080
+  compression:
+    enabled: true
+  servlet:
+    context-path: /api/repair/v1
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  application:
+    name: REPAIR-HISTORY-API
+    version: 0.0.1-SNAPSHOT
+
+  datasource:
+    url: jdbc:mysql://${database.host}:${database.port}/${database.name}
+    username: ${database.user}
+    password: ${database.pass}
+    tomcat:
+      max-active: 2
+      max-idle: 1
+      initial-size: 2
+      max-wait: 700
+      jmx-enabled: false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+logging:
+  level:
+    feign: trace
+    root: info
+    org.zalando.logbook: trace
