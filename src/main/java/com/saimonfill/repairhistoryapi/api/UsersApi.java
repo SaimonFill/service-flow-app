@@ -6,6 +6,8 @@ import com.saimonfill.repairhistoryapi.service.users.CreateUserService;
 import com.saimonfill.repairhistoryapi.service.users.GetUsersListService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,13 +22,13 @@ public class UsersApi {
 
 	@Operation(summary = "Get users list")
 	@GetMapping
-	public List<UsersRS> getUsersList() {
-		return service.getUsersList();
+	public ResponseEntity<List<UsersRS>> getUsersList() {
+		return new ResponseEntity<>(service.getUsersList(), HttpStatus.OK);
 	}
 
 	@Operation(summary = "Create users")
 	@PostMapping
-	public void getUsersList(@RequestBody CreateUsersRQ request) {
-		createUserService.createUser(request);
+	public ResponseEntity<Object> getUsersList(@RequestBody CreateUsersRQ request) {
+		return createUserService.createUser(request);
 	}
 }

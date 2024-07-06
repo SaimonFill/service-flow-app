@@ -21,17 +21,18 @@ public class UsersMapper {
 		return entity;
 	}
 
-	public List<UsersRS> toListUsersRSFromEntity(List<Users> users) {
+	public List<UsersRS> toUsersListRSFromEntity(List<Users> users) {
 		return users.stream()
-				.map(this::toListUsersRSFromEntity)
+				.map(this::toUsersRSFromEntity)
 				.collect(Collectors.toList());
 	}
 
-	private UsersRS toListUsersRSFromEntity(Users user) {
+	public UsersRS toUsersRSFromEntity(Users user) {
 		return UsersRS.builder()
 				.name(user.getName())
 				.email(user.getEmail())
 				.uuid(user.getUuid())
+				.role(user.getRole())
 				.build();
 	}
 }

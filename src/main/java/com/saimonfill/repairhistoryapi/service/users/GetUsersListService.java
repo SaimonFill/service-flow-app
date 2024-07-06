@@ -18,6 +18,6 @@ public class GetUsersListService {
 
 	public List<UsersRS> getUsersList() {
 		List<Users> users = usersRepository.findAll();
-		return usersMapper.toListUsersRSFromEntity(users);
+		return usersMapper.toUsersListRSFromEntity(users);
 	}
 }
