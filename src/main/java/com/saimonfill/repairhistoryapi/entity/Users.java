@@ -1,5 +1,6 @@
 package com.saimonfill.repairhistoryapi.entity;
 
+import com.saimonfill.repairhistoryapi.model.enums.UsersRoleEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -31,6 +32,9 @@ public class Users implements Serializable {
 
 	@NotNull
 	private String passwordHash;
+
+	@NotNull
+	private UsersRoleEnum role;
 
 	@NotNull
 	private Timestamp createdAt;

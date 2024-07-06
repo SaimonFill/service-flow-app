@@ -1,7 +1,7 @@
 package com.saimonfill.repairhistoryapi.api;
 
-import com.saimonfill.repairhistoryapi.model.message.CreateUsersRQ;
-import com.saimonfill.repairhistoryapi.model.message.UsersRS;
+import com.saimonfill.repairhistoryapi.model.message.users.CreateUsersRQ;
+import com.saimonfill.repairhistoryapi.model.message.users.UsersRS;
 import com.saimonfill.repairhistoryapi.service.users.CreateUserService;
 import com.saimonfill.repairhistoryapi.service.users.GetUsersListService;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,4 +1,4 @@
-package com.saimonfill.repairhistoryapi.model.dto;
+package com.saimonfill.repairhistoryapi.model.message.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,9 +9,9 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 @EqualsAndHashCode(callSuper = false)
-public class UsersDto {
+public class UsersRS {
 
 	private String name;
 	private String email;
-	private String passwordHash;
+	private String uuid;
 }
