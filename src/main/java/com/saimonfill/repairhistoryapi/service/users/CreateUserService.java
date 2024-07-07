@@ -1,6 +1,6 @@
 package com.saimonfill.repairhistoryapi.service.users;
 
-import com.saimonfill.repairhistoryapi.entity.Users;
+import com.saimonfill.repairhistoryapi.entity.User;
 import com.saimonfill.repairhistoryapi.mapper.UsersMapper;
 import com.saimonfill.repairhistoryapi.model.message.users.CreateUsersRQ;
 import com.saimonfill.repairhistoryapi.model.message.users.UsersRS;
@@ -12,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -24,7 +22,7 @@ public class CreateUserService {
 
 	public ResponseEntity<Object> createUser(CreateUsersRQ user) {
 		try {
-			Users entity = usersMapper.toUsersEntityFromRequest(user);
+			User entity = usersMapper.toUsersEntityFromRequest(user);
 			usersRepository.save(entity);
 			UsersRS response = usersMapper.toUsersRSFromEntity(entity);
 			log.info("User created: {}", response);

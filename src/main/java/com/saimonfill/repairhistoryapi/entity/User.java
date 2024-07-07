@@ -1,40 +1,38 @@
 package com.saimonfill.repairhistoryapi.entity;
 
-import com.saimonfill.repairhistoryapi.model.enums.UsersRoleEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.UUID;
+
 
 @Entity
+@Table(name="users")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-public class Users implements Serializable {
+public class User {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(unique = true)
-	private String uuid;
-
 	@NotNull
 	@Column(unique = true)
-	private String name;
+	private String username;
 
 	@NotNull
 	@Column(unique = true)
 	private String email;
 
 	@NotNull
-	private String passwordHash;
+	private String password;
 
 	@NotNull
-	private UsersRoleEnum role;
+	private String authorities;
 
 	@NotNull
 	private Timestamp createdAt;
@@ -53,9 +51,6 @@ public class Users implements Serializable {
 		}
 		if (createdBy == null) {
 			createdBy = "system";
-		}
-		if (uuid == null) {
-			uuid = UUID.randomUUID().toString();
 		}
 	}
 

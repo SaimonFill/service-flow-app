@@ -26,8 +26,14 @@ public class UsersApi {
 		return new ResponseEntity<>(service.getUsersList(), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Get user by name")
+	@GetMapping("/{name}")
+	public ResponseEntity<UsersRS> getUserByName(@PathVariable("name") String name) {
+		return new ResponseEntity<>(service.getUserByName(name), HttpStatus.OK);
+	}
+
 	@Operation(summary = "Create users")
-	@PostMapping
+	@PostMapping("/create")
 	public ResponseEntity<Object> getUsersList(@RequestBody CreateUsersRQ request) {
 		return createUserService.createUser(request);
 	}
