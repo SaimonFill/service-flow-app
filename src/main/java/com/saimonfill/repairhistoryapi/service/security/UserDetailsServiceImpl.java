@@ -1,5 +1,6 @@
 package com.saimonfill.repairhistoryapi.service.security;
 
+import com.saimonfill.repairhistoryapi.model.jwt.UserAuthenticated;
 import com.saimonfill.repairhistoryapi.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,10 +16,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
-		return userRepository.findByUsername(userEmail)
+		return userRepository.findByEmail(userEmail)
 				.map(UserAuthenticated::new)
 				.orElseThrow(
-						() -> new UsernameNotFoundException("User Not Found with userEmail: " + userEmail));
+						() -> new UsernameNotFoundException("User Not Found with userEmail: " + userEmail)
+				);
 	}
-
 }

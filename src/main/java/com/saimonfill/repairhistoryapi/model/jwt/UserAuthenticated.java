@@ -1,4 +1,4 @@
-package com.saimonfill.repairhistoryapi.service.security;
+package com.saimonfill.repairhistoryapi.model.jwt;
 
 import com.saimonfill.repairhistoryapi.entity.User;
 import org.springframework.security.core.GrantedAuthority;

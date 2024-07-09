@@ -1,12 +1,12 @@
-#server:
-#  port: 8080
-#  compression:
-#    enabled: true
-#  servlet:
-#    context-path: /api/repair/v1
-#  error:
-#    whitelabel:
-#      enabled: false
+server:
+  port: 8080
+  compression:
+    enabled: true
+  servlet:
+    context-path: /api/repair/v1
+  error:
+    whitelabel:
+      enabled: false
 
 spring:
   application:
@@ -32,5 +32,6 @@ logging:
     com.saimonfill.repairhistoryapi.repository: error
     com.saimonfill.repairhistoryapi.service: error
 
+# todo: change secret key to a real one
 jwt:
   secret: uTbO6Gyfh6pdPG8uhMtaQjml/lBICm7Ga3CrWx9KxnMMbFFUIbMn7B1pQC5T37Sa1zgesGezOP17DLIiRyJdRw==

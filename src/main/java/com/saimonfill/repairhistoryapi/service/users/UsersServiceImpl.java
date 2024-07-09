@@ -12,17 +12,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CreateUserService {
+public class UsersServiceImpl implements UsersService {
 
 	private final UsersRepository usersRepository;
 	private final UsersMapper usersMapper;
 
-	public ResponseEntity<Object> createUser(CreateUsersRQ user) {
+	public ResponseEntity<Object> createUser(CreateUsersRQ createUsersRQ) {
 		try {
-			User entity = usersMapper.toUsersEntityFromRequest(user);
+			User entity = usersMapper.toUsersEntityFromRequest(createUsersRQ);
 			usersRepository.save(entity);
 			UsersRS response = usersMapper.toUsersRSFromEntity(entity);
 			log.info("User created: {}", response);
@@ -34,5 +36,18 @@ public class CreateUserService {
 			log.error("Error creating user: {}", e.getMessage());
 			return new ResponseEntity<>("An unexpected error occurred. Please try again later.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
+	public List<UsersRS> getUsersList() {
+		List<User> users = usersRepository.findAll();
+		return usersMapper.toUsersListRSFromEntity(users);
+	}
+
+	public UsersRS getUserByName(String userName) {
+		var user = usersRepository.findByUsername(userName);
+		if (user.isEmpty()) {
+			throw new RuntimeException("User not found");
+		}
+		return usersMapper.toUsersRSFromEntity(user.get());
 	}
 }

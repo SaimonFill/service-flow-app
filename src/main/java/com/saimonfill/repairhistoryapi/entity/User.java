@@ -6,7 +6,6 @@ import lombok.*;
 
 import java.sql.Timestamp;
 
-
 @Entity
 @Table(name="users")
 @Builder
@@ -53,14 +52,4 @@ public class User {
 			createdBy = "system";
 		}
 	}
-
-//	public void setPassword(String password) {
-//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//		this.passwordHash = passwordEncoder.encode(password);
-//	}
-//
-//	public boolean checkPassword(String password) {
-//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//		return passwordEncoder.matches(password, this.passwordHash);
-//	}
 }

@@ -4,26 +4,24 @@ import com.saimonfill.repairhistoryapi.entity.User;
 import com.saimonfill.repairhistoryapi.model.enums.UsersRolePermissionUtils;
 import com.saimonfill.repairhistoryapi.model.message.users.CreateUsersRQ;
 import com.saimonfill.repairhistoryapi.model.message.users.UsersRS;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.saimonfill.repairhistoryapi.service.utils.ServiceUtils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@RequiredArgsConstructor
 public class UsersMapper {
 
-	private final PasswordEncoder passwordEncoder;
-
-	public UsersMapper(PasswordEncoder passwordEncoder) {
-		this.passwordEncoder = passwordEncoder;
-	}
+	private final ServiceUtils serviceUtils;
 
 	public User toUsersEntityFromRequest(CreateUsersRQ request) {
 		User entity = new User();
 		entity.setUsername(request.getUsername());
 		entity.setEmail(request.getEmail());
-		entity.setPassword(passwordEncoder.encode(request.getPassword()));
+		entity.setPassword(serviceUtils.encodePassword(request.getPassword()));
 		entity.setAuthorities(UsersRolePermissionUtils.USER);
 		return entity;
 	}

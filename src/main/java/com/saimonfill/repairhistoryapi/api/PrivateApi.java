@@ -13,7 +13,6 @@ public class PrivateApi {
 
 	@GetMapping
 	public String getMessage() {
-		var securityContext = org.springframework.security.core.context.SecurityContextHolder.getContext();
 		return "Hello from private API controller";
 	}
 }

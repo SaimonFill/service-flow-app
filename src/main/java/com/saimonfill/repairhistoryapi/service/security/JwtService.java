@@ -1,8 +1,9 @@
 package com.saimonfill.repairhistoryapi.service.security;
 
+import com.saimonfill.repairhistoryapi.config.AppProperties;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
@@ -14,11 +15,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class JwtService {
 	public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
-	@Value("${jwt.secret}")
-	private String secret;
+	private final AppProperties appProperties;
 
 	public String generateToken(Authentication authentication) {
 		Instant now = Instant.now();
@@ -43,7 +44,7 @@ public class JwtService {
 	private String doGenerateToken(Map<String, Object> claims, String subject) {
 		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
-				.signWith(SignatureAlgorithm.HS512, secret.getBytes()).compact();
+				.signWith(SignatureAlgorithm.HS512, appProperties.getSecretKey().getBytes()).compact();
 	}
 
 }
