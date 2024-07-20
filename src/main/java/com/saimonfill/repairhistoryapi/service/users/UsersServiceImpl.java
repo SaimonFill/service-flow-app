@@ -1,10 +1,10 @@
 package com.saimonfill.repairhistoryapi.service.users;
 
-import com.saimonfill.repairhistoryapi.entity.User;
+import com.saimonfill.repairhistoryapi.entity.Users;
 import com.saimonfill.repairhistoryapi.mapper.UsersMapper;
 import com.saimonfill.repairhistoryapi.model.message.users.CreateUsersRQ;
 import com.saimonfill.repairhistoryapi.model.message.users.UsersRS;
-import com.saimonfill.repairhistoryapi.repository.UsersRepository;
+import com.saimonfill.repairhistoryapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -19,15 +19,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UsersServiceImpl implements UsersService {
 
-	private final UsersRepository usersRepository;
+	private final UserRepository userRepository;
 	private final UsersMapper usersMapper;
 
 	public ResponseEntity<Object> createUser(CreateUsersRQ createUsersRQ) {
 		try {
-			User entity = usersMapper.toUsersEntityFromRequest(createUsersRQ);
-			usersRepository.save(entity);
+			Users entity = usersMapper.toUsersEntityFromRequest(createUsersRQ);
+			userRepository.save(entity);
 			UsersRS response = usersMapper.toUsersRSFromEntity(entity);
-			log.info("User created: {}", response);
+			log.info("Users created: {}", response);
 			return new ResponseEntity<>(response, HttpStatus.CREATED);
 		} catch (DataIntegrityViolationException e) {
 			log.error("Data integrity violation when creating user: {}", e.getMessage());
@@ -39,14 +39,14 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	public List<UsersRS> getUsersList() {
-		List<User> users = usersRepository.findAll();
+		List<Users> users = userRepository.findAll();
 		return usersMapper.toUsersListRSFromEntity(users);
 	}
 
 	public UsersRS getUserByName(String userName) {
-		var user = usersRepository.findByUsername(userName);
+		var user = userRepository.findByUsername(userName);
 		if (user.isEmpty()) {
-			throw new RuntimeException("User not found");
+			throw new RuntimeException("Users not found");
 		}
 		return usersMapper.toUsersRSFromEntity(user.get());
 	}

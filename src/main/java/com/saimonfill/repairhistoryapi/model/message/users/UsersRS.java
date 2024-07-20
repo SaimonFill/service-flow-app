@@ -13,6 +13,6 @@ public class UsersRS {
 
 	private String username;
 	private String email;
-	private String uuid;
+	private String userId;
 	private String role;
 }

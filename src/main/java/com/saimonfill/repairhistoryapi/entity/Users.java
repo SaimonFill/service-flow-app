@@ -7,17 +7,16 @@ import lombok.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name="users")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class User {
+public class Users {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer id;
+	private Integer userId;
 
 	@NotNull
 	@Column(unique = true)
@@ -42,6 +41,9 @@ public class User {
 	private Timestamp updatedAt;
 
 	private String updatedBy;
+
+	@NotNull
+	private boolean active = true;
 
 	@PrePersist
 	protected void onCreate() {

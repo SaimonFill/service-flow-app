@@ -1,6 +1,6 @@
 package com.saimonfill.repairhistoryapi.mapper;
 
-import com.saimonfill.repairhistoryapi.entity.User;
+import com.saimonfill.repairhistoryapi.entity.Users;
 import com.saimonfill.repairhistoryapi.model.enums.UsersRolePermissionUtils;
 import com.saimonfill.repairhistoryapi.model.message.users.CreateUsersRQ;
 import com.saimonfill.repairhistoryapi.model.message.users.UsersRS;
@@ -17,27 +17,27 @@ public class UsersMapper {
 
 	private final ServiceUtils serviceUtils;
 
-	public User toUsersEntityFromRequest(CreateUsersRQ request) {
-		User entity = new User();
+	public Users toUsersEntityFromRequest(CreateUsersRQ request) {
+		Users entity = new Users();
 		entity.setUsername(request.getUsername());
 		entity.setEmail(request.getEmail());
 		entity.setPassword(serviceUtils.encodePassword(request.getPassword()));
-		entity.setAuthorities(UsersRolePermissionUtils.USER);
+		entity.setAuthorities(request.getAuthorities().toString());
 		return entity;
 	}
 
-	public List<UsersRS> toUsersListRSFromEntity(List<User> users) {
+	public List<UsersRS> toUsersListRSFromEntity(List<Users> users) {
 		return users.stream()
 				.map(this::toUsersRSFromEntity)
 				.collect(Collectors.toList());
 	}
 
-	public UsersRS toUsersRSFromEntity(User user) {
+	public UsersRS toUsersRSFromEntity(Users users) {
 		return UsersRS.builder()
-				.username(user.getUsername())
-				.email(user.getEmail())
-				.role(user.getAuthorities())
-				.uuid(user.getId().toString())
+				.username(users.getUsername())
+				.email(users.getEmail())
+				.role(users.getAuthorities())
+				.userId(users.getUserId().toString())
 				.build();
 	}
 }
