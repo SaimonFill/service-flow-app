@@ -1,35 +1,43 @@
 package com.saimonfill.repairhistoryapi.mapper;
 
 import com.saimonfill.repairhistoryapi.entity.Users;
-import com.saimonfill.repairhistoryapi.model.message.CreateUsersRQ;
-import com.saimonfill.repairhistoryapi.model.message.UsersRS;
+import com.saimonfill.repairhistoryapi.model.enums.UsersRolePermissionUtils;
+import com.saimonfill.repairhistoryapi.model.message.users.CreateUsersRQ;
+import com.saimonfill.repairhistoryapi.model.message.users.UsersRS;
+import com.saimonfill.repairhistoryapi.service.utils.ServiceUtils;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@RequiredArgsConstructor
 public class UsersMapper {
+
+	private final ServiceUtils serviceUtils;
 
 	public Users toUsersEntityFromRequest(CreateUsersRQ request) {
 		Users entity = new Users();
-		entity.setName(request.getName());
+		entity.setUsername(request.getUsername());
 		entity.setEmail(request.getEmail());
-		entity.setPasswordHash(request.getPasswordHash());
+		entity.setPassword(serviceUtils.encodePassword(request.getPassword()));
+		entity.setAuthorities(request.getAuthorities().toString());
 		return entity;
 	}
 
-	public List<UsersRS> toListUsersRSFromEntity(List<Users> users) {
+	public List<UsersRS> toUsersListRSFromEntity(List<Users> users) {
 		return users.stream()
-				.map(this::toListUsersRSFromEntity)
+				.map(this::toUsersRSFromEntity)
 				.collect(Collectors.toList());
 	}
 
-	private UsersRS toListUsersRSFromEntity(Users user) {
+	public UsersRS toUsersRSFromEntity(Users users) {
 		return UsersRS.builder()
-				.name(user.getName())
-				.email(user.getEmail())
-				.uuid(user.getUuid())
+				.username(users.getUsername())
+				.email(users.getEmail())
+				.role(users.getAuthorities())
+				.userId(users.getUserId().toString())
 				.build();
 	}
 }

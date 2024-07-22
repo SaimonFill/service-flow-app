@@ -3,7 +3,7 @@ server:
   compression:
     enabled: true
   servlet:
-    context-path: /api/repair/v1
+    context-path:
   error:
     whitelabel:
       enabled: false
@@ -14,19 +14,23 @@ spring:
     version: 0.0.1-SNAPSHOT
 
   datasource:
-    url: jdbc:mysql://${database.host}:${database.port}/${database.name}
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public
     username: ${database.user}
     password: ${database.pass}
-    tomcat:
-      max-active: 2
-      max-idle: 1
-      initial-size: 2
-      max-wait: 700
-      jmx-enabled: false
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driverClassName: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
 logging:
   level:
-    feign: trace
-    root: info
-    org.zalando.logbook: trace
+    root: debug
+#    org.zalando.logbook: trace
+#    com.saimonfill.repairhistoryapi.repository: error
+#    com.saimonfill.repairhistoryapi.service: error
+
+# todo: change secret key to a real one
+jwt:
+  secret: uTbO6Gyfh6pdPG8uhMtaQjml/lBICm7Ga3CrWx9KxnMMbFFUIbMn7B1pQC5T37Sa1zgesGezOP17DLIiRyJdRw==
