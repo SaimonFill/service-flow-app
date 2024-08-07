@@ -32,7 +32,7 @@ public class UsersApi {
 		return new ResponseEntity<>(usersService.getUserByName(name), HttpStatus.OK);
 	}
 
-	@PreAuthorize(UsersRolePermissionUtils.EXP_OWNER_OR_ADMIN)
+//	@PreAuthorize(UsersRolePermissionUtils.EXP_OWNER_OR_ADMIN)
 	@Operation(summary = "Create users")
 	@PostMapping("/create")
 	public ResponseEntity<Object> createUser(@RequestBody CreateUsersRQ request) {
