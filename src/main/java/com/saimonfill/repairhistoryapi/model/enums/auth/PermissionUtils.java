@@ -1,6 +1,6 @@
-package com.saimonfill.repairhistoryapi.model.enums;
+package com.saimonfill.repairhistoryapi.model.enums.auth;
 
-public class UsersRolePermissionUtils {
+public class PermissionUtils {
 	//Expression parts
 	public static final String HAS_AUTH_PREFIX = "hasAuthority('";
 	public static final String HAS_ANY_AUTH_PREFIX = "hasAnyAuthority('";

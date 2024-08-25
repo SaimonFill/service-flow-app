@@ -1,7 +1,6 @@
 package com.saimonfill.repairhistoryapi.mapper;
 
 import com.saimonfill.repairhistoryapi.entity.Users;
-import com.saimonfill.repairhistoryapi.model.enums.UsersRolePermissionUtils;
 import com.saimonfill.repairhistoryapi.model.message.users.CreateUsersRQ;
 import com.saimonfill.repairhistoryapi.model.message.users.UsersRS;
 import com.saimonfill.repairhistoryapi.service.utils.ServiceUtils;
@@ -19,7 +18,8 @@ public class UsersMapper {
 
 	public Users toUsersEntityFromRequest(CreateUsersRQ request) {
 		Users entity = new Users();
-		entity.setUsername(request.getUsername());
+		entity.setGivenName(request.getUserGivenName());
+		entity.setSurName(request.getUserSurName());
 		entity.setEmail(request.getEmail());
 		entity.setPassword(serviceUtils.encodePassword(request.getPassword()));
 		entity.setAuthorities(request.getAuthorities().toString());
@@ -34,7 +34,8 @@ public class UsersMapper {
 
 	public UsersRS toUsersRSFromEntity(Users users) {
 		return UsersRS.builder()
-				.username(users.getUsername())
+				.userGiverName(users.getGivenName())
+				.userSurName(users.getSurName())
 				.email(users.getEmail())
 				.role(users.getAuthorities())
 				.userId(users.getUserId().toString())

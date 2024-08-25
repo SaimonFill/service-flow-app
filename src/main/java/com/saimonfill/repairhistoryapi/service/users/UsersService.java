@@ -12,5 +12,4 @@ public interface UsersService {
 
 	List<UsersRS> getUsersList();
 
-	UsersRS getUserByName(String userName);
 }

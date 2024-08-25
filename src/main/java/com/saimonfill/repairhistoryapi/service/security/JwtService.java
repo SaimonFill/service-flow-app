@@ -34,7 +34,7 @@ public class JwtService {
 				.collect(Collectors
 						.joining(" "));
 
-		var user = userRepository.findByUsername(authentication.getName()).orElseThrow();
+		var user = userRepository.findByEmail(authentication.getName()).orElseThrow();
 
 		Map<String, Object> claims = new HashMap<>();
 		claims.put("scope", scope);

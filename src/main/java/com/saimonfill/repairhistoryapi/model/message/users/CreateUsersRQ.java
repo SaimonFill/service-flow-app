@@ -1,6 +1,6 @@
 package com.saimonfill.repairhistoryapi.model.message.users;
 
-import com.saimonfill.repairhistoryapi.model.enums.UsersAuthoritiesEnum;
+import com.saimonfill.repairhistoryapi.model.enums.auth.UsersAuthoritiesEnum;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,9 @@ import lombok.experimental.SuperBuilder;
 public class CreateUsersRQ {
 
 	@NotBlank
-	private String username;
+	private String userGivenName;
+	@NotBlank
+	private String userSurName;
 	@NotBlank
 	private String email;
 	@NotBlank

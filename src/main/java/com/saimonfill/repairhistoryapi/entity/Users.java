@@ -19,8 +19,10 @@ public class Users {
 	private Integer userId;
 
 	@NotNull
-	@Column(unique = true)
-	private String username;
+	private String givenName;
+
+	@NotNull
+	private String surName;
 
 	@NotNull
 	@Column(unique = true)

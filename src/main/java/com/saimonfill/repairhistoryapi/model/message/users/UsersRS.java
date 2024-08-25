@@ -11,7 +11,8 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class UsersRS {
 
-	private String username;
+	private String userGiverName;
+	private String userSurName;
 	private String email;
 	private String userId;
 	private String role;

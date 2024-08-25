@@ -18,7 +18,7 @@ public class UserAuthenticated implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return users.getUsername();
+		return users.getGivenName().concat(" ").concat(users.getSurName());
 	}
 
 	@Override

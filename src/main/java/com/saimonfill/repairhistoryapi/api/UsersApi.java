@@ -1,6 +1,6 @@
 package com.saimonfill.repairhistoryapi.api;
 
-import com.saimonfill.repairhistoryapi.model.enums.UsersRolePermissionUtils;
+import com.saimonfill.repairhistoryapi.model.enums.auth.PermissionUtils;
 import com.saimonfill.repairhistoryapi.model.message.users.CreateUsersRQ;
 import com.saimonfill.repairhistoryapi.model.message.users.UsersRS;
 import com.saimonfill.repairhistoryapi.service.users.UsersService;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@PreAuthorize(PermissionUtils.EXP_OWNER_OR_ADMIN)
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
@@ -26,13 +27,12 @@ public class UsersApi {
 		return new ResponseEntity<>(usersService.getUsersList(), HttpStatus.OK);
 	}
 
-	@Operation(summary = "Get user by name")
-	@GetMapping("/{name}")
-	public ResponseEntity<UsersRS> getUserByName(@PathVariable("name") String name) {
-		return new ResponseEntity<>(usersService.getUserByName(name), HttpStatus.OK);
-	}
+//	@Operation(summary = "Get user by name")
+//	@GetMapping("/{name}")
+//	public ResponseEntity<UsersRS> getUserByName(@PathVariable("name") String name) {
+//		return new ResponseEntity<>(usersService.getUserByName(name), HttpStatus.OK);
+//	}
 
-//	@PreAuthorize(UsersRolePermissionUtils.EXP_OWNER_OR_ADMIN)
 	@Operation(summary = "Create users")
 	@PostMapping("/create")
 	public ResponseEntity<Object> createUser(@RequestBody CreateUsersRQ request) {
