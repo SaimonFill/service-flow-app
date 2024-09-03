@@ -12,4 +12,6 @@ public interface UsersService {
 
 	List<UsersRS> getUsersList();
 
+	UsersRS getUserByEmail(String email);
+
 }

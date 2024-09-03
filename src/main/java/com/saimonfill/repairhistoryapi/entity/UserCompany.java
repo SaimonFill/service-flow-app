@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 @Entity
 @Builder
@@ -12,20 +11,19 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Users {
+public class UserCompany {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer userId;
+	private Integer userCompanyId;
 
-	@Column(unique = true, nullable = false)
-	private String email;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private Users users;
 
-	@Column(nullable = false)
-	private String password;
-
-	@Column(nullable = false)
-	private String authorities;
+	@ManyToOne
+	@JoinColumn(name = "company_id")
+	private Company company;
 
 	@Column(nullable = false)
 	private Timestamp createdAt;
@@ -39,9 +37,6 @@ public class Users {
 
 	@Column(nullable = false)
 	private boolean active = true;
-
-	@OneToMany(mappedBy = "users")
-	private List<UserCompany> userCompanies;
 
 	@PrePersist
 	protected void onCreate() {

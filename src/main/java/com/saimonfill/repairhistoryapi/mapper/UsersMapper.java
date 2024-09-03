@@ -18,8 +18,6 @@ public class UsersMapper {
 
 	public Users toUsersEntityFromRequest(CreateUsersRQ request) {
 		Users entity = new Users();
-		entity.setGivenName(request.getUserGivenName());
-		entity.setSurName(request.getUserSurName());
 		entity.setEmail(request.getEmail());
 		entity.setPassword(serviceUtils.encodePassword(request.getPassword()));
 		entity.setAuthorities(request.getAuthorities().toString());
@@ -34,8 +32,6 @@ public class UsersMapper {
 
 	public UsersRS toUsersRSFromEntity(Users users) {
 		return UsersRS.builder()
-				.userGiverName(users.getGivenName())
-				.userSurName(users.getSurName())
 				.email(users.getEmail())
 				.role(users.getAuthorities())
 				.userId(users.getUserId().toString())

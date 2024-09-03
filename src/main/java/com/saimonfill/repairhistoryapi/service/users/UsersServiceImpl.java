@@ -43,11 +43,11 @@ public class UsersServiceImpl implements UsersService {
 		return usersMapper.toUsersListRSFromEntity(users);
 	}
 
-//	public UsersRS getUserByName(String userName) {
-//		var user = userRepository.findByUsername(userName);
-//		if (user.isEmpty()) {
-//			throw new RuntimeException("Users not found");
-//		}
-//		return usersMapper.toUsersRSFromEntity(user.get());
-//	}
+	public UsersRS getUserByEmail(String email) {
+		var user = userRepository.findByEmailLikeIgnoreCase(email);
+		if (user.isEmpty()) {
+			throw new RuntimeException("Users not found");
+		}
+		return usersMapper.toUsersRSFromEntity(user.get());
+	}
 }

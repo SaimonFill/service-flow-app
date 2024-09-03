@@ -27,11 +27,11 @@ public class UsersApi {
 		return new ResponseEntity<>(usersService.getUsersList(), HttpStatus.OK);
 	}
 
-//	@Operation(summary = "Get user by name")
-//	@GetMapping("/{name}")
-//	public ResponseEntity<UsersRS> getUserByName(@PathVariable("name") String name) {
-//		return new ResponseEntity<>(usersService.getUserByName(name), HttpStatus.OK);
-//	}
+	@Operation(summary = "Get user by email")
+	@GetMapping("/{email}")
+	public ResponseEntity<UsersRS> getUserByName(@PathVariable("email") String email) {
+		return new ResponseEntity<>(usersService.getUserByEmail(email), HttpStatus.OK);
+	}
 
 	@Operation(summary = "Create users")
 	@PostMapping("/create")
