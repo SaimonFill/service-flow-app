@@ -12,20 +12,21 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Users {
+public class Company {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Integer userId;
+	private Integer companyId;
 
 	@Column(unique = true, nullable = false)
-	private String email;
+	private String corporateName;
 
-	@Column(nullable = false)
-	private String password;
+	@Column(unique = true, nullable = false)
+	private String taxPayerId;
 
-	@Column(nullable = false)
-	private String authorities;
+	@OneToOne
+	@JoinColumn(name = "person_id")
+	private Person person;
 
 	@Column(nullable = false)
 	private Timestamp createdAt;
@@ -40,7 +41,7 @@ public class Users {
 	@Column(nullable = false)
 	private boolean active = true;
 
-	@OneToMany(mappedBy = "users")
+	@OneToMany(mappedBy = "company")
 	private List<UserCompany> userCompanies;
 
 	@PrePersist

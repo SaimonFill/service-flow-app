@@ -1,6 +1,7 @@
 package com.saimonfill.repairhistoryapi.model.jwt;
 
 import com.saimonfill.repairhistoryapi.entity.Users;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +19,7 @@ public class UserAuthenticated implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return users.getUsername();
+		return users.getEmail();
 	}
 
 	@Override
