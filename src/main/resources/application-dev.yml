@@ -1,6 +1,6 @@
 database:
   host: localhost
   port: 5432
-  name: repair-history-db-dev
+  name: service-flow-db-dev
   user: postgres
   pass: postgres

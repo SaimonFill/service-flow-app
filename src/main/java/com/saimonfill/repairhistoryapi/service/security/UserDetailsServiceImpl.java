@@ -1,7 +1,7 @@
 package com.saimonfill.repairhistoryapi.service.security;
 
 import com.saimonfill.repairhistoryapi.model.jwt.UserAuthenticated;
-import com.saimonfill.repairhistoryapi.repository.UserRepository;
+import com.saimonfill.repairhistoryapi.repository.users.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

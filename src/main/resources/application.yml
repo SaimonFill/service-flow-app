@@ -10,7 +10,7 @@ server:
 
 spring:
   application:
-    name: REPAIR-HISTORY-API
+    name: SERVICE-FLOW-APP
 
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public

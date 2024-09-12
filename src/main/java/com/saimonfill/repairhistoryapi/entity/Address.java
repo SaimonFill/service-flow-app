@@ -32,6 +32,8 @@ public class Address {
 	@Column(nullable = false)
 	private String zipCode;
 
+	private String complement;
+
 	@Column(nullable = false)
 	private Timestamp createdAt;
 

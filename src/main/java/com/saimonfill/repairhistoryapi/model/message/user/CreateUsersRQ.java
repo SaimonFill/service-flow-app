@@ -14,10 +14,6 @@ import lombok.experimental.SuperBuilder;
 public class CreateUsersRQ {
 
 	@NotBlank
-	private String userGivenName;
-	@NotBlank
-	private String userSurName;
-	@NotBlank
 	private String email;
 	@NotBlank
 	private String password;

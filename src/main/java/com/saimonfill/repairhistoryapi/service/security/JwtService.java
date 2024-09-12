@@ -1,7 +1,7 @@
 package com.saimonfill.repairhistoryapi.service.security;
 
 import com.saimonfill.repairhistoryapi.config.AppProperties;
-import com.saimonfill.repairhistoryapi.repository.UserRepository;
+import com.saimonfill.repairhistoryapi.repository.users.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +39,7 @@ public class JwtService {
 		Map<String, Object> claims = new HashMap<>();
 		claims.put("scope", scope);
 		claims.put("sub", authentication.getName());
+		claims.put("userId", user.getUuid());
 		claims.put("email", user.getEmail());
 		claims.put("iat", now);
 		claims.put("exp", now.plusSeconds(expiry));

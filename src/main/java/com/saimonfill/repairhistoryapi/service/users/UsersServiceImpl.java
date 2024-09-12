@@ -4,7 +4,7 @@ import com.saimonfill.repairhistoryapi.entity.Users;
 import com.saimonfill.repairhistoryapi.mapper.UsersMapper;
 import com.saimonfill.repairhistoryapi.model.message.user.CreateUsersRQ;
 import com.saimonfill.repairhistoryapi.model.message.user.UsersRS;
-import com.saimonfill.repairhistoryapi.repository.UserRepository;
+import com.saimonfill.repairhistoryapi.repository.users.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
