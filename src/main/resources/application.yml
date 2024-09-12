@@ -26,9 +26,6 @@ spring:
 logging:
   level:
     root: debug
-#    org.zalando.logbook: trace
-#    com.saimonfill.repairhistoryapi.repository: error
-#    com.saimonfill.repairhistoryapi.service: error
 
 # todo: change secret key to a real one
 jwt:

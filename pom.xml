@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.saimonfill</groupId>
-    <artifactId>repairhistoryapi</artifactId>
+    <artifactId>service-flow-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>repair-history-api</name>
+    <name>service-flow-api</name>
     <description>Project created to help control the maintenance of non-conformities.</description>
     <url/>
     <licenses>
