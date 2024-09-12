@@ -1,8 +1,8 @@
 package com.saimonfill.repairhistoryapi.mapper;
 
 import com.saimonfill.repairhistoryapi.entity.Users;
-import com.saimonfill.repairhistoryapi.model.message.users.CreateUsersRQ;
-import com.saimonfill.repairhistoryapi.model.message.users.UsersRS;
+import com.saimonfill.repairhistoryapi.model.message.user.CreateUsersRQ;
+import com.saimonfill.repairhistoryapi.model.message.user.UsersRS;
 import com.saimonfill.repairhistoryapi.service.utils.ServiceUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ public class UsersMapper {
 		Users entity = new Users();
 		entity.setEmail(request.getEmail());
 		entity.setPassword(serviceUtils.encodePassword(request.getPassword()));
-		entity.setAuthorities(request.getAuthorities().toString());
+		entity.setAuthorities(serviceUtils.setAuthorityName(request.getAuthorities().toString()));
 		return entity;
 	}
 

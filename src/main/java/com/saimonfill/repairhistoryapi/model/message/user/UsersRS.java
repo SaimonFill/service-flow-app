@@ -1,4 +1,4 @@
-package com.saimonfill.repairhistoryapi.model.message.users;
+package com.saimonfill.repairhistoryapi.model.message.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

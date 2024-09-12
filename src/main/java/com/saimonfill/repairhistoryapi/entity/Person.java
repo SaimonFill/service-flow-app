@@ -17,6 +17,9 @@ public class Person {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer personId;
 
+	@Column(unique = true, nullable = false, length = 36)
+	private String uuid;
+
 	@Column(nullable = false)
 	private String givenName;
 
@@ -56,6 +59,9 @@ public class Person {
 		}
 		if (createdBy == null) {
 			createdBy = "system";
+		}
+		if (uuid == null) {
+			uuid = java.util.UUID.randomUUID().toString();
 		}
 	}
 }

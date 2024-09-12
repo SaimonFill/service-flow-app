@@ -18,6 +18,9 @@ public class Company {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer companyId;
 
+	@Column(unique = true, nullable = false, length = 36)
+	private String uuid;
+
 	@Column(unique = true, nullable = false)
 	private String corporateName;
 
@@ -27,6 +30,9 @@ public class Company {
 	@OneToOne
 	@JoinColumn(name = "person_id")
 	private Person person;
+
+	@Column(nullable = false)
+	private String status;
 
 	@Column(nullable = false)
 	private Timestamp createdAt;
@@ -51,6 +57,9 @@ public class Company {
 		}
 		if (createdBy == null) {
 			createdBy = "system";
+		}
+		if (uuid == null) {
+			uuid = java.util.UUID.randomUUID().toString();
 		}
 	}
 }

@@ -2,8 +2,8 @@ package com.saimonfill.repairhistoryapi.service.users;
 
 import com.saimonfill.repairhistoryapi.entity.Users;
 import com.saimonfill.repairhistoryapi.mapper.UsersMapper;
-import com.saimonfill.repairhistoryapi.model.message.users.CreateUsersRQ;
-import com.saimonfill.repairhistoryapi.model.message.users.UsersRS;
+import com.saimonfill.repairhistoryapi.model.message.user.CreateUsersRQ;
+import com.saimonfill.repairhistoryapi.model.message.user.UsersRS;
 import com.saimonfill.repairhistoryapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
 package com.saimonfill.repairhistoryapi.service.users;
 
-import com.saimonfill.repairhistoryapi.model.message.users.CreateUsersRQ;
-import com.saimonfill.repairhistoryapi.model.message.users.UsersRS;
+import com.saimonfill.repairhistoryapi.model.message.user.CreateUsersRQ;
+import com.saimonfill.repairhistoryapi.model.message.user.UsersRS;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.saimonfill.repairhistoryapi.model.message.users;
+package com.saimonfill.repairhistoryapi.model.message.user;
 
 import com.saimonfill.repairhistoryapi.model.enums.auth.UsersAuthoritiesEnum;
 import jakarta.validation.constraints.NotBlank;
