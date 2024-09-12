@@ -5,6 +5,7 @@ import com.saimonfill.repairhistoryapi.model.message.user.CreateUsersRQ;
 import com.saimonfill.repairhistoryapi.model.message.user.UsersRS;
 import org.springframework.http.ResponseEntity;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 public interface CompanyService {

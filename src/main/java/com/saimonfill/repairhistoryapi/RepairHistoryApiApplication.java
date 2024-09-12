@@ -11,9 +11,4 @@ public class RepairHistoryApiApplication {
 		SpringApplication.run(RepairHistoryApiApplication.class, args);
 	}
 
-//	@Bean
-//	ApplicationRunner runner(PasswordEncoder passwordEncoder) {
-//		return args -> System.out.println(passwordEncoder.encode("password"));
-//	}
-
 }

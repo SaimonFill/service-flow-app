@@ -30,13 +30,13 @@ public class UsersApi {
 	@Operation(summary = "Get users list")
 	@GetMapping
 	public ResponseEntity<List<UsersRS>> getUsersList() {
-		return new ResponseEntity<>(usersService.getUsersList(), HttpStatus.OK);
+		return usersService.getUsersList();
 	}
 
-	@PreAuthorize(PermissionUtils.EXP_OWNER_OR_ADMIN)
-	@Operation(summary = "Get user by email")
-	@GetMapping("/{email}")
-	public ResponseEntity<UsersRS> getUserByName(@PathVariable("email") String email) {
-		return new ResponseEntity<>(usersService.getUserByEmail(email), HttpStatus.OK);
-	}
+//	@PreAuthorize(PermissionUtils.EXP_OWNER_OR_ADMIN)
+//	@Operation(summary = "Get user by email")
+//	@GetMapping("/{email}")
+//	public ResponseEntity<UsersRS> getUserByName(@PathVariable("email") String email) {
+//		return usersService.getUserByEmail(email);
+//	}
 }

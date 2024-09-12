@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -25,10 +26,15 @@ public class UsersServiceImpl implements UsersService {
 	public ResponseEntity<Object> createUser(CreateUsersRQ createUsersRQ) {
 		try {
 			Users entity = usersMapper.toUsersEntityFromRequest(createUsersRQ);
-			userRepository.save(entity);
+
+			entity = userRepository.save(entity);
+
 			UsersRS response = usersMapper.toUsersRSFromEntity(entity);
+
 			log.info("Users created: {}", response);
+
 			return new ResponseEntity<>(response, HttpStatus.CREATED);
+
 		} catch (DataIntegrityViolationException e) {
 			log.error("Data integrity violation when creating user: {}", e.getMessage());
 			return new ResponseEntity<>("This email or username is already in use.", HttpStatus.CONFLICT);
@@ -38,16 +44,19 @@ public class UsersServiceImpl implements UsersService {
 		}
 	}
 
-	public List<UsersRS> getUsersList() {
+	public ResponseEntity<List<UsersRS>> getUsersList() {
 		List<Users> users = userRepository.findAll();
-		return usersMapper.toUsersListRSFromEntity(users);
+	
+		var usersList = users.stream()
+				.map(usersMapper::toUsersRSFromEntity)
+				.collect(Collectors.toList());
+		
+		return new ResponseEntity<>(usersList, HttpStatus.OK);
 	}
 
-	public UsersRS getUserByEmail(String email) {
+	public ResponseEntity<UsersRS> getUserByEmail(String email) {
 		var user = userRepository.findByEmailLikeIgnoreCase(email);
-		if (user.isEmpty()) {
-			throw new RuntimeException("Users not found");
-		}
-		return usersMapper.toUsersRSFromEntity(user.get());
+		return user.map(users -> new ResponseEntity<>(usersMapper.toUsersRSFromEntity(users), HttpStatus.OK))
+				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 }

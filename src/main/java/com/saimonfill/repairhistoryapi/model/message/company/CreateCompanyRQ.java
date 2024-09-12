@@ -2,6 +2,7 @@ package com.saimonfill.repairhistoryapi.model.message.company;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,10 +16,13 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class CreateCompanyRQ {
 
+	@NotNull
 	@Valid
 	private Company company;
+	@NotNull
 	@Valid
 	private Person person;
+	@NotNull
 	@Valid
 	private Address address;
 

@@ -1,6 +1,6 @@
 package com.saimonfill.repairhistoryapi.model.dto;
 
-import jakarta.validation.constraints.NotNull;
+import com.saimonfill.repairhistoryapi.model.enums.auth.UsersAuthoritiesEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,10 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class PersonDTO {
-	private String givenName;
-	private String surName;
-	private String phoneNumber;
-	private String taxPayerId;
-	private Integer addressId;
+public class UsersDTO {
+	private String email;
+	private String password;
+	private UsersAuthoritiesEnum authorities;
 }

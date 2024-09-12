@@ -45,7 +45,7 @@ public class Address {
 	private String updatedBy;
 
 	@Column(nullable = false)
-	private boolean active = true;
+	private Boolean active;
 
 	@OneToOne(mappedBy = "address")
 	private Person person;

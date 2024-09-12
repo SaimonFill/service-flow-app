@@ -1,18 +1,14 @@
 package com.saimonfill.repairhistoryapi.mapper;
 
-import com.saimonfill.repairhistoryapi.service.utils.ServiceUtils;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import com.saimonfill.repairhistoryapi.entity.Person;
+import com.saimonfill.repairhistoryapi.model.dto.PersonDTO;
+import com.saimonfill.repairhistoryapi.model.message.company.CreateCompanyRQ;
+import org.mapstruct.Mapper;
 
-@Component
-@RequiredArgsConstructor
-public class PersonMapper {
+@Mapper(componentModel = "spring", config = MapperConfig.class)
+public interface PersonMapper {
 
-	private final ServiceUtils serviceUtils;
+	PersonDTO toPersonDTOFromRequest(CreateCompanyRQ.Person person);
 
-//	public Person toPersonEntityFromRequest(CreateUsersRQ request) {
-//		Person entity = new Person();
-//		entity.set
-//		return entity;
-//	}
+	Person toPersonEntityFromDTO(PersonDTO personDTO);
 }

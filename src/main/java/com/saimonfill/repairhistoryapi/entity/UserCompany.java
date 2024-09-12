@@ -36,7 +36,7 @@ public class UserCompany {
 	private String updatedBy;
 
 	@Column(nullable = false)
-	private boolean active = true;
+	private Boolean active;
 
 	@PrePersist
 	protected void onCreate() {

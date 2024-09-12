@@ -4,37 +4,23 @@ import com.saimonfill.repairhistoryapi.entity.Users;
 import com.saimonfill.repairhistoryapi.model.message.user.CreateUsersRQ;
 import com.saimonfill.repairhistoryapi.model.message.user.UsersRS;
 import com.saimonfill.repairhistoryapi.service.utils.ServiceUtils;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 
-import java.util.List;
-import java.util.stream.Collectors;
+@Mapper(componentModel = "spring", config = MapperConfig.class)
+public interface UsersMapper {
 
-@Component
-@RequiredArgsConstructor
-public class UsersMapper {
+	@Mappings({
+			@Mapping(target = "email", source = "request.email"),
+			@Mapping(target = "password", expression = "java(encodePassword(request))"),
+			@Mapping(target = "authorities", source = "request.authorities")
+	})
+	Users toUsersEntityFromRequest(CreateUsersRQ request);
 
-	private final ServiceUtils serviceUtils;
+	UsersRS toUsersRSFromEntity(Users users);
 
-	public Users toUsersEntityFromRequest(CreateUsersRQ request) {
-		Users entity = new Users();
-		entity.setEmail(request.getEmail());
-		entity.setPassword(serviceUtils.encodePassword(request.getPassword()));
-		entity.setAuthorities(serviceUtils.setAuthorityName(request.getAuthorities().toString()));
-		return entity;
-	}
-
-	public List<UsersRS> toUsersListRSFromEntity(List<Users> users) {
-		return users.stream()
-				.map(this::toUsersRSFromEntity)
-				.collect(Collectors.toList());
-	}
-
-	public UsersRS toUsersRSFromEntity(Users users) {
-		return UsersRS.builder()
-				.email(users.getEmail())
-				.role(users.getAuthorities())
-				.userId(users.getUserId().toString())
-				.build();
+	default String encodePassword(CreateUsersRQ request) {
+		return ServiceUtils.encodePassword(request.getPassword());
 	}
 }

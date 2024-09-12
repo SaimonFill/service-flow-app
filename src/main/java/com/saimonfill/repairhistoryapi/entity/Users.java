@@ -41,7 +41,7 @@ public class Users {
 	private String updatedBy;
 
 	@Column(nullable = false)
-	private boolean active = true;
+	private Boolean active;
 
 	@OneToMany(mappedBy = "users")
 	private List<UserCompany> userCompanies;

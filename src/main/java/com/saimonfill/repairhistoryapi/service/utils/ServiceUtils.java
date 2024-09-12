@@ -1,21 +1,21 @@
 package com.saimonfill.repairhistoryapi.service.utils;
 
 import com.saimonfill.repairhistoryapi.config.AppProperties;
+import com.saimonfill.repairhistoryapi.service.security.PasswordEncoderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-@Component
+@Service
 @RequiredArgsConstructor
 public class ServiceUtils {
 
-	private final PasswordEncoder passwordEncoder;
 	private final AppProperties appProperties;
 
-	public String encodePassword(String password) {
-		return passwordEncoder.encode(password);
+	public static String encodePassword(String password) {
+		PasswordEncoderService passwordEncoderService = new PasswordEncoderService();
+		return passwordEncoderService.encode(password);
 	}
 
 	public String setAuthorityName(String authority) {

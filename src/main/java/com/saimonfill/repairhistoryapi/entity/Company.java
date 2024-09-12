@@ -25,6 +25,9 @@ public class Company {
 	private String corporateName;
 
 	@Column(unique = true, nullable = false)
+	private String name;
+
+	@Column(unique = true, nullable = false)
 	private String taxPayerId;
 
 	@OneToOne
@@ -45,7 +48,7 @@ public class Company {
 	private String updatedBy;
 
 	@Column(nullable = false)
-	private boolean active = true;
+	private Boolean active;
 
 	@OneToMany(mappedBy = "company")
 	private List<UserCompany> userCompanies;

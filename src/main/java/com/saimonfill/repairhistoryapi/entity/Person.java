@@ -47,7 +47,7 @@ public class Person {
 	private String updatedBy;
 
 	@Column(nullable = false)
-	private boolean active = true;
+	private Boolean active;
 
 	@OneToOne(mappedBy = "person")
 	private Company company;

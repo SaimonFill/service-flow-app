@@ -10,8 +10,8 @@ public interface UsersService {
 
 	ResponseEntity<Object> createUser(CreateUsersRQ createUsersRQ);
 
-	List<UsersRS> getUsersList();
+	ResponseEntity<List<UsersRS>> getUsersList();
 
-	UsersRS getUserByEmail(String email);
+//	ResponseEntity<UsersRS> getUserByEmail(String email);
 
 }
