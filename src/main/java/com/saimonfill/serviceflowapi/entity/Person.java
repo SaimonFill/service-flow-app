@@ -63,5 +63,8 @@ public class Person {
 		if (uuid == null) {
 			uuid = java.util.UUID.randomUUID().toString();
 		}
+		if (active == null) {
+			active = Boolean.TRUE;
+		}
 	}
 }

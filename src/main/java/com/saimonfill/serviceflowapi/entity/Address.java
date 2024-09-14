@@ -17,6 +17,9 @@ public class Address {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer addressId;
 
+	@Column(unique = true, nullable = false, length = 36)
+	private String uuid;
+
 	@Column(nullable = false)
 	private String street;
 
@@ -57,6 +60,12 @@ public class Address {
 		}
 		if (createdBy == null) {
 			createdBy = "system";
+		}
+		if (uuid == null) {
+			uuid = java.util.UUID.randomUUID().toString();
+		}
+		if (active == null) {
+			active = Boolean.TRUE;
 		}
 	}
 }

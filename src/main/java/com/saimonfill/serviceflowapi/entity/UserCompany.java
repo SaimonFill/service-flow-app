@@ -46,5 +46,8 @@ public class UserCompany {
 		if (createdBy == null) {
 			createdBy = "system";
 		}
+		if (active == null) {
+			active = Boolean.TRUE;
+		}
 	}
 }
